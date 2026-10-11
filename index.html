@@ -27,33 +27,46 @@
 .cards3.fxgrid .metric-value{font-size:22px}
 .fresh{animation:flash .9s ease-out}@keyframes flash{from{background:#fff6d6}to{background:transparent}}
 @media(max-width:850px){.settings{grid-template-columns:1fr 1fr}}@media(max-width:520px){.settings{grid-template-columns:1fr}.stock-tools input{width:100%}}
+
+/* ---- Playground ---- */
+.pg-pane{display:none}.pg-pane.active{display:block}
+.pg-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}.pg-row .field{min-width:130px}.pg-row .field.grow{flex:1;min-width:200px}
+.pg-row .field label{margin-bottom:4px}.pg-row .field input,.pg-row .field select{padding:9px 10px;font-size:13px}
+.pg-check{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#475a6b;padding:9px 4px;cursor:pointer}.pg-check input{width:auto}
+.pg-msg{font-size:12px;color:var(--muted);margin:2px 0 10px;min-height:18px}.pg-msg.err{color:var(--red)}
+.kl-wrap{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}.kl-wrap svg{display:block;width:100%;height:auto;cursor:crosshair}
+.kl-info{font-size:12px;color:#35495b;padding:8px 12px;border-top:1px solid var(--line);background:#f8fafc;min-height:34px;font-variant-numeric:tabular-nums}
+.kl-legend{display:flex;gap:14px;font-size:11px;color:var(--muted);margin:8px 2px 0;flex-wrap:wrap}.kl-legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:5px;vertical-align:3px}
+.pg-code{width:100%;min-height:210px;border:1px solid #1c3650;border-radius:10px;background:#0b1d2e;color:#e4eef7;padding:14px;font:12.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;resize:vertical;tab-size:2;outline:0}.pg-code:focus{border-color:var(--gold)}
+.pg-out{background:#f4f7fa;border:1px solid var(--line);border-radius:10px;padding:14px;max-height:380px;overflow:auto;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;margin:12px 0 0;color:#17283a}.pg-out .err{color:var(--red);font-weight:700}.pg-out .log{color:#0c6f99}
+.btn.run{padding:10px 18px}
 </style>
 </head>
 <body>
 <div class="topline"><span><b>MARKETS</b> · Independent market intelligence for everyday investors</span><span id="dateLine">Live feeds · connecting…</span></div>
-<header class="header"><a class="brand" href="#"><span>Market</span>Scope<span>°</span></a><nav class="nav"><a href="#india">Indices</a><a href="#stocks">Stocks by Country</a><a href="#crypto">Crypto</a><a href="#fx">Currency</a><a href="#funds">Mutual Funds</a><a href="#bonds">Bonds</a><a href="#learn">Learn</a><a class="nav-cta" href="#newsletter">Free Daily Brief ↗</a></nav></header>
+<header class="header"><a class="brand" href="#"><span>Market</span>Scope<span>°</span></a><nav class="nav"><a href="#india">Indices</a><a href="#stocks">Stocks by Country</a><a href="#crypto">Crypto</a><a href="#fx">Currency</a><a href="#playground">Playground</a><a href="#funds">Mutual Funds</a><a href="#bonds">Bonds</a><a href="#learn">Learn</a><a class="nav-cta" href="#newsletter">Free Daily Brief ↗</a></nav></header>
 <div class="ticker" aria-label="Live market ticker"><div class="ticker-marquee" id="tickerTrack"></div></div>
 <section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Smarter money starts here</div><h1>Markets, made<br>clear.</h1><p>Your daily destination for Indian stocks, US markets, mutual funds and bonds. Understand what moved, why it matters, and what to watch next.</p><div class="search"><input id="searchInput" placeholder="Search stocks, funds, topics…" aria-label="Search markets"><button onclick="searchSite()">Search ↗</button></div><div class="hero-note">Research first. Understand the risks. Make your own decisions.</div></div><div class="hero-card"><h3>Market pulse</h3><p>Live snapshot · last close when a market is shut</p>
 <div class="index-row"><div><small>NIFTY 50</small><strong data-price="^NSEI" data-dp="2">…</strong></div><span class="change" data-pct="^NSEI"></span></div>
 <div class="index-row"><div><small>BSE SENSEX</small><strong data-price="^BSESN" data-dp="2">…</strong></div><span class="change" data-pct="^BSESN"></span></div>
-<div class="index-row"><div><small>Nikkei 225</small><strong data-price="^N225" data-dp="2">…</strong></div><span class="change" data-pct="^N225"></span></div>
+<div class="index-row"><div><small>Shanghai Composite</small><strong data-price="^SSEC" data-dp="2">…</strong></div><span class="change" data-pct="^SSEC"></span></div>
 <div class="index-row"><div><small>Bitcoin · USD</small><strong data-price="BTC" data-pre="$" data-dp="2">…</strong></div><span class="change" data-pct="BTC"></span></div>
-<div class="hero-note">Quotes come from third-party public sources and may be delayed. Not investment advice.</div></div></div></section>
+<div class="hero-note">China, Hong Kong and US quotes via stock-sdk; other markets via Yahoo Finance. May be delayed. Not investment advice.</div></div></div></section>
 <main class="wrap">
 <div class="ad-slot">ADVERTISEMENT · RESPONSIVE DISPLAY AD UNIT</div>
 <section class="section" id="sources" style="padding-bottom:0"><div class="section-head"><div><h2>Live data sources</h2><p>Choose an aggregator for each feed. Settings are remembered in your browser.</p></div><span class="tag"><span class="live-dot" id="liveDot"></span><span id="liveTag">Connecting</span></span></div><div class="card"><div class="settings">
-<div class="field"><label for="selStock">Stocks &amp; indices aggregator</label><select id="selStock"><option value="auto">Yahoo Finance · auto proxy</option><option value="corsproxy">Yahoo Finance · corsproxy.io</option><option value="allorigins">Yahoo Finance · AllOrigins</option><option value="custom">Yahoo Finance · my own proxy</option></select></div>
+<div class="field"><label for="selStock">Stocks &amp; indices aggregator</label><select id="selStock"><option value="sdk">stock-sdk (Tencent / EastMoney) + Yahoo fill-in</option><option value="sdkonly">stock-sdk only (China · HK · US)</option><option value="auto">Yahoo Finance only · auto proxy</option><option value="corsproxy">Yahoo only · corsproxy.io</option><option value="allorigins">Yahoo only · AllOrigins</option><option value="custom">Yahoo only · my own proxy</option></select></div>
 <div class="field"><label for="selCrypto">Crypto aggregator (BTC · ETH)</label><select id="selCrypto"><option value="binance">Binance</option><option value="coinbase">Coinbase</option><option value="kraken">Kraken</option><option value="coingecko">CoinGecko (aggregated)</option></select></div>
 <div class="field"><label for="selFx">Currency source</label><select id="selFx"><option value="yahoo">Yahoo Finance · near-live</option><option value="er">ExchangeRate-API · daily</option><option value="frankfurter">Frankfurter · ECB daily</option></select></div>
 <div class="field"><label for="selRefresh">Stock / FX refresh</label><select id="selRefresh"><option value="30">Every 30 s</option><option value="60">Every 1 min</option><option value="120">Every 2 min</option><option value="300">Every 5 min</option></select></div>
-<div class="field wide" id="proxyField" style="display:none"><label for="proxyUrl">Your proxy URL (use <code>{url}</code> where the target address goes)</label><input id="proxyUrl" placeholder="https://your-worker.workers.dev/?url={url}"></div>
+<div class="field wide" id="proxyField" style="display:none"><label for="proxyUrl">Your proxy URL — optional for stock-sdk, required for “my own proxy” (use <code>{url}</code> where the target address goes)</label><input id="proxyUrl" placeholder="https://your-worker.workers.dev/?url={url}"></div>
 </div>
-<div class="status-row"><span class="chip" id="st-stocks"><i class="dot"></i>Stocks: waiting</span><span class="chip" id="st-crypto"><i class="dot"></i>Crypto: waiting</span><span class="chip" id="st-fx"><i class="dot"></i>Currency: waiting</span><button class="btn-ghost" id="btnRefresh" type="button">↻ Refresh now</button><button class="btn-ghost" id="btnPause" type="button">⏸ Pause updates</button></div>
-<p class="help">Browsers cannot call Yahoo Finance directly, so stock quotes go through a public CORS proxy. These are best-effort; for dependable quotes deploy your own free proxy (for example a Cloudflare Worker) and select “my own proxy”. Exchange quotes can be delayed 15–20 minutes and show the last close when a market is shut.</p></div></section>
+<div class="status-row"><span class="chip" id="st-stocks"><i class="dot"></i>Stocks: waiting</span><span class="chip" id="st-sdk"><i class="dot"></i>stock-sdk: waiting</span><span class="chip" id="st-crypto"><i class="dot"></i>Crypto: waiting</span><span class="chip" id="st-fx"><i class="dot"></i>Currency: waiting</span><button class="btn-ghost" id="btnRefresh" type="button">↻ Refresh now</button><button class="btn-ghost" id="btnPause" type="button">⏸ Pause updates</button></div>
+<p class="help"><b>Who covers what:</b> <a class="link" href="https://stock-sdk.linkdiary.cn" target="_blank" rel="noopener">stock-sdk</a> supplies China A-shares, Hong Kong and US stocks plus the playground. It does not cover Japan, Taiwan, South Korea or India, so those (and global indices) use Yahoo Finance, which browsers can only reach through a public CORS proxy. Bitcoin and Ethereum come from exchange APIs; currencies from Yahoo or daily reference rates. Both stock-sdk and the public proxies are best-effort: if your browser blocks the upstream sites (CORS), deploy a small proxy (for example a Cloudflare Worker) and paste it above. Quotes can be delayed by seconds to minutes and show the last close when a market is shut.</p></div></section>
 
 <section class="section" id="india"><div class="section-head"><div><h2>Market dashboard</h2><p>Benchmark indices across India and Asia-Pacific, plus the S&amp;P 500</p></div><a class="link" href="#stocks">Stocks by country ↓</a></div><div class="grid cards4" id="dashGrid"></div><p class="disclaimer">Index data via Yahoo Finance through the aggregator selected above. Intraday sparklines show the latest session. Prices are informational and may be delayed.</p></section>
 
-<section class="section" id="stocks"><div class="section-head"><div><h2>Leading profitable companies by country</h2><p>Large, established, consistently profitable listed businesses in China, Hong Kong, Japan, India, Taiwan and South Korea — plus a US tab</p></div><a class="link" href="https://finance.yahoo.com/markets/stocks/most-active/" target="_blank" rel="noopener">More on Yahoo Finance ↗</a></div><div class="card"><div class="stock-tools"><div class="tabs" id="stockTabs"></div><input id="stockFilter" type="search" placeholder="Filter company or ticker…" aria-label="Filter stocks"></div><div class="table-wrap"><table><thead><tr><th>Company / ticker</th><th>Exchange</th><th class="right">Last price</th><th class="right">Change</th><th class="right">Research angle</th><th class="right">Charts</th></tr></thead><tbody id="stockRows"></tbody></table></div><div class="disclaimer">These are illustrative large-cap names that have historically reported profits, not recommendations. Past profitability does not guarantee future results. Prices are in each stock’s local currency.</div></div></section>
+<section class="section" id="stocks"><div class="section-head"><div><h2>Leading profitable companies by country</h2><p>Large, established, consistently profitable listed businesses in China, Hong Kong, Japan, India, Taiwan and South Korea — plus a US tab. China, HK and US prices come from stock-sdk; the rest from Yahoo.</p></div><a class="link" href="https://finance.yahoo.com/markets/stocks/most-active/" target="_blank" rel="noopener">More on Yahoo Finance ↗</a></div><div class="card"><div class="stock-tools"><div class="tabs" id="stockTabs"></div><input id="stockFilter" type="search" placeholder="Filter company or ticker…" aria-label="Filter stocks"></div><div class="table-wrap"><table><thead><tr><th>Company / ticker</th><th>Exchange</th><th class="right">Last price</th><th class="right">Change</th><th class="right">Research angle</th><th class="right">Charts</th></tr></thead><tbody id="stockRows"></tbody></table></div><div class="disclaimer">These are illustrative large-cap names that have historically reported profits, not recommendations. Past profitability does not guarantee future results. Prices are in each stock’s local currency.</div></div></section>
 
 <section class="section" id="crypto"><div class="section-head"><div><h2>Bitcoin &amp; Ethereum</h2><p>Live prices, compared across exchanges and aggregators</p></div><span class="tag">24/7 · ~15 s refresh</span></div>
 <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:16px" id="coinGrid">
@@ -63,6 +76,35 @@
 
 <section class="section" id="fx"><div class="section-head"><div><h2>Currency rates</h2><p>Major pairs plus the Asian currencies tracked above</p></div><span class="tag" id="fxTag">Forex</span></div><div class="grid cards3 fxgrid" id="fxGrid"></div><p class="disclaimer" id="fxNote">Daily reference sources show the rate without a daily change figure.</p></section>
 
+<section class="section" id="playground"><div class="section-head"><div><h2>Market data playground</h2><p>Query live quotes, chart K-lines, or run your own code against stock-sdk — right in the browser</p></div><a class="link" href="https://stock-sdk.linkdiary.cn/playground/" target="_blank" rel="noopener">Official playground ↗</a></div>
+<div class="card"><div class="tabs" id="pgTabs"><button class="tab active" data-pg="quote" type="button">Quick quotes</button><button class="tab" data-pg="kline" type="button">K-line chart</button><button class="tab" data-pg="code" type="button">Code sandbox</button></div>
+
+<div class="pg-pane active" id="pg-quote">
+<div class="pg-row"><div class="field"><label for="pqMarket">Market</label><select id="pqMarket"><option value="cn">China A-shares</option><option value="hk">Hong Kong</option><option value="us">United States</option><option value="fund">Funds / ETFs (CN)</option></select></div>
+<div class="field grow"><label for="pqSymbols">Symbols (comma separated)</label><input id="pqSymbols" value="600519,000001,sh000300" spellcheck="false"></div>
+<button class="btn run" id="pqGo" type="button">Fetch quotes</button><label class="pg-check"><input type="checkbox" id="pqAuto"> Auto-refresh (10 s)</label></div>
+<div class="pg-msg" id="pqMsg">Ready.</div>
+<div class="table-wrap"><table><thead><tr><th>Name</th><th>Code</th><th class="right">Price</th><th class="right">Change</th><th class="right">Change %</th><th class="right">Open</th><th class="right">High</th><th class="right">Low</th><th class="right">Prev close</th><th class="right">Ccy</th></tr></thead><tbody id="pqRows"></tbody></table></div>
+<p class="help">Examples — A-shares: <code>600519</code>, <code>sz000858</code>, <code>sh000001</code> (Shanghai Composite). Hong Kong: <code>00700</code>, <code>09988</code>. US: <code>AAPL</code>, <code>NVDA</code>. Funds: <code>510300</code>. China A-share volume and turnover may use the source’s native units.</p></div>
+
+<div class="pg-pane" id="pg-kline">
+<div class="pg-row"><div class="field"><label for="klMarket">Market</label><select id="klMarket"><option value="cn">China A-shares</option><option value="hk">Hong Kong</option><option value="us">United States</option></select></div>
+<div class="field"><label for="klSymbol">Symbol</label><input id="klSymbol" value="600519" spellcheck="false"></div>
+<div class="field"><label for="klPeriod">Period</label><select id="klPeriod"><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select></div>
+<div class="field"><label for="klAdjust">Adjustment</label><select id="klAdjust"><option value="qfq">Forward-adjusted</option><option value="hfq">Backward-adjusted</option><option value="none">None</option></select></div>
+<div class="field"><label for="klBars">Bars</label><select id="klBars"><option value="60">60</option><option value="120" selected>120</option><option value="250">250</option></select></div>
+<label class="pg-check"><input type="checkbox" id="klMa5" checked> MA5</label><label class="pg-check"><input type="checkbox" id="klMa20" checked> MA20</label><label class="pg-check"><input type="checkbox" id="klMa60"> MA60</label>
+<button class="btn run" id="klGo" type="button">Draw chart</button></div>
+<div class="pg-msg" id="klMsg">Ready.</div>
+<div class="kl-wrap"><svg id="klSvg" viewBox="0 0 900 430" role="img" aria-label="Candlestick chart"></svg><div class="kl-info" id="klInfo">Hover the chart for open / high / low / close.</div></div>
+<div class="kl-legend"><span><i style="background:#f0b84b"></i>MA5</span><span><i style="background:#0c6f99"></i>MA20</span><span><i style="background:#7a4bd1"></i>MA60</span><span>Green = close ≥ open · Red = close &lt; open</span></div></div>
+
+<div class="pg-pane" id="pg-code">
+<div class="pg-row"><div class="field grow"><label for="pgPreset">Example snippets</label><select id="pgPreset"></select></div><button class="btn run" id="pgRun" type="button">▶ Run</button><button class="btn-ghost" id="pgCopy" type="button">Copy code</button></div>
+<textarea class="pg-code" id="pgCode" spellcheck="false" aria-label="Code editor"></textarea>
+<pre class="pg-out" id="pgOut">Press Run (or Ctrl/⌘ + Enter). Available in scope: <b>sdk</b> (the StockSDK instance), <b>live</b> (this page’s current quotes), <b>ma(arr, n)</b>, <b>sleep(ms)</b> and <b>console</b>. Top-level <b>await</b> and <b>return</b> both work.</pre>
+<p class="help">Code runs in your own browser with the same access as this page — only run code you trust. Calls go straight to the upstream sources, so they can be delayed, rate-limited or blocked by CORS; set a proxy under “Live data sources” if that happens. Full API: <a class="link" href="https://stock-sdk.linkdiary.cn/api/" target="_blank" rel="noopener">stock-sdk docs ↗</a></p></div>
+</div></section>
 <section class="section" id="funds"><div class="section-head"><div><h2>Mutual funds, without the jargon</h2><p>Learn how funds work before comparing performance</p></div><a class="link" href="https://www.amfiindia.com/otherdata/fund-performance" target="_blank" rel="noopener">AMFI fund performance ↗</a></div><div class="grid cards3"><div class="card"><span class="tag">Equity</span><h3>Index funds</h3><p style="color:var(--muted);font-size:13px">Track an index, usually with a rules-based portfolio. Compare tracking difference, costs and benchmark.</p><a class="link" href="https://www.amfiindia.com/" target="_blank" rel="noopener">Explore AMFI ↗</a></div><div class="card"><span class="tag">Fixed income</span><h3>Debt funds</h3><p style="color:var(--muted);font-size:13px">Understand credit quality, duration, interest-rate sensitivity and liquidity—not just recent returns.</p><a class="link" href="https://www.sebi.gov.in/" target="_blank" rel="noopener">SEBI resources ↗</a></div><div class="card"><span class="tag">Monthly investing</span><h3>SIP basics</h3><p style="color:var(--muted);font-size:13px">A systematic investment plan automates contributions. It does not guarantee returns or eliminate market risk.</p><a class="link" href="#calculator">Try SIP calculator ↓</a></div></div></section>
 <section class="section" id="bonds"><div class="section-head"><div><h2>Bonds & fixed income</h2><p>Yield, credit risk, duration and capital protection explained</p></div><a class="link" href="https://analytics.nseindia.com/" target="_blank" rel="noopener">NSE Fixed Income Analytics ↗</a></div><div class="grid cards3"><div class="card"><h3>Government securities</h3><p style="font-size:13px;color:var(--muted)">Explore sovereign debt, Treasury bills and how yields change with interest-rate expectations.</p></div><div class="card"><h3>Corporate bonds</h3><p style="font-size:13px;color:var(--muted)">Check issuer strength, credit rating, maturity, liquidity and default risk before investing.</p></div><div class="card"><h3>Bond yield basics</h3><p style="font-size:13px;color:var(--muted)">Bond prices and yields generally move in opposite directions. Higher yields can reflect higher risk.</p></div></div></section>
 <section class="section" id="calculator"><div class="section-head"><div><h2>Free SIP calculator</h2><p>Illustrative estimate—not a forecast or guarantee</p></div></div><div class="card"><div class="calculator"><div class="field"><label for="monthly">Monthly investment (₹)</label><input id="monthly" type="number" min="0" value="5000"></div><div class="field"><label for="years">Investment period (years)</label><input id="years" type="number" min="1" max="50" value="10"></div><div class="field"><label for="return">Assumed annual return (%)</label><input id="return" type="number" min="0" max="50" step=".5" value="12"></div><div class="field"><label>Compounding assumption</label><input value="Monthly contributions · monthly rate" disabled></div></div><div class="calc-result"><small>Estimated future value</small><strong id="futureValue">₹11,61,695</strong><span id="investedText" style="font-size:12px;color:#39745f">Invested ₹6,00,000 · estimated growth ₹5,61,695</span></div><p class="disclaimer">Actual returns vary and may be negative. Taxes, fees, inflation and changing returns are excluded. This tool is for education only.</p></div></section>
@@ -70,13 +112,13 @@
 <div class="ad-slot">ADVERTISEMENT · IN-CONTENT AD UNIT</div>
 <section class="section" id="newsletter"><div class="newsletter"><div><span class="eyebrow" style="color:#087f5b">The MarketScope briefing</span><h2>Make sense of the market in 5 minutes.</h2><p>A future newsletter signup slot. Connect a consent-based email service before collecting subscriber details.</p></div><form onsubmit="event.preventDefault();document.getElementById('newsMsg').textContent='Demo only: connect an email platform to activate subscriptions.';"><input type="email" placeholder="Your email address" aria-label="Your email address" required><button class="btn" type="submit">Notify me ↗</button><div id="newsMsg" style="font-size:11px;grid-column:1/-1;color:#526878"></div></form></div></section>
 </main>
-<footer class="footer"><div class="wrap"><div class="footer-grid"><div><a class="brand" href="#"><span>Market</span>Scope<span>°</span></a><p>Clear, accessible market information for curious investors in India and around the world.</p><p>Independent editorial concept. Not a broker or investment adviser.</p></div><div><h4>Markets</h4><a href="#india">Market indices</a><a href="#crypto">Bitcoin &amp; Ethereum</a><a href="#fx">Currency rates</a><a href="#stocks">Stocks by country</a><a href="#bonds">Bonds & yields</a><a href="#funds">Mutual funds</a></div><div><h4>Learn</h4><a href="#calculator">SIP calculator</a><a href="#learn">Market explainers</a><a href="https://investor.sebi.gov.in/" target="_blank" rel="noopener">SEBI Investor</a><a href="https://www.amfiindia.com/" target="_blank" rel="noopener">AMFI</a></div><div><h4>Site information</h4><a href="#disclaimer">Disclaimer</a><a href="#privacy">Privacy policy · draft needed</a><a href="#contact">Contact · configure</a><a href="#advertise">Advertise · configure</a></div></div><div class="copyright">© 2026 MarketScope concept website. All rights reserved. · Market data from third-party public sources; may be delayed.</div><div class="disclaimer" id="disclaimer"><b>Financial disclaimer:</b> Content is for general information and education only, not investment advice, a recommendation, or an offer to buy or sell securities. Market prices can change rapidly. Verify quotes, filings, fund documents, yields and regulations with official sources. Investing involves risk, including loss of principal. Do not publish personalized securities recommendations or paid research without checking applicable Indian and US regulatory requirements.</div></div></footer>
+<footer class="footer"><div class="wrap"><div class="footer-grid"><div><a class="brand" href="#"><span>Market</span>Scope<span>°</span></a><p>Clear, accessible market information for curious investors in India and around the world.</p><p>Independent editorial concept. Not a broker or investment adviser.</p></div><div><h4>Markets</h4><a href="#india">Market indices</a><a href="#crypto">Bitcoin &amp; Ethereum</a><a href="#fx">Currency rates</a><a href="#stocks">Stocks by country</a><a href="#bonds">Bonds & yields</a><a href="#funds">Mutual funds</a></div><div><h4>Learn</h4><a href="#playground">Data playground</a><a href="#calculator">SIP calculator</a><a href="https://stock-sdk.linkdiary.cn" target="_blank" rel="noopener">stock-sdk docs</a><a href="#learn">Market explainers</a><a href="https://investor.sebi.gov.in/" target="_blank" rel="noopener">SEBI Investor</a><a href="https://www.amfiindia.com/" target="_blank" rel="noopener">AMFI</a></div><div><h4>Site information</h4><a href="#disclaimer">Disclaimer</a><a href="#privacy">Privacy policy · draft needed</a><a href="#contact">Contact · configure</a><a href="#advertise">Advertise · configure</a></div></div><div class="copyright">© 2026 MarketScope concept website. All rights reserved. · Market data from stock-sdk, Yahoo Finance, Binance, Coinbase, Kraken, CoinGecko, ExchangeRate-API and Frankfurter; may be delayed.</div><div class="disclaimer" id="disclaimer"><b>Financial disclaimer:</b> Content is for general information and education only, not investment advice, a recommendation, or an offer to buy or sell securities. Market prices can change rapidly. Verify quotes, filings, fund documents, yields and regulations with official sources. Investing involves risk, including loss of principal. Do not publish personalized securities recommendations or paid research without checking applicable Indian and US regulatory requirements.</div></div></footer>
 <script>
 (function(){
 const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
 
 /* ---------- Settings ---------- */
-const CFG={stock:'auto',crypto:'binance',fx:'yahoo',refresh:60,proxy:'',paused:false,tab:'india'};
+const CFG={stock:'sdk',crypto:'binance',fx:'yahoo',refresh:60,proxy:'',paused:false,tab:'india'};
 try{Object.assign(CFG,JSON.parse(localStorage.getItem('ms_cfg')||'{}'))}catch(e){}
 const save=()=>{try{localStorage.setItem('ms_cfg',JSON.stringify(CFG))}catch(e){}};
 
@@ -132,7 +174,7 @@ const MK={
   ['Amazon','AMZN','NASDAQ','NASDAQ','Cloud · retail margins'],
   ['Alphabet','GOOGL','NASDAQ','NASDAQ','Advertising · AI']]}
 };
-const IDX=[['^NSEI','NIFTY 50','India'],['^BSESN','BSE SENSEX','India'],['^N225','Nikkei 225','Japan'],['^HSI','Hang Seng','Hong Kong'],['^SSEC','Shanghai Composite','China'],['^TWII','TAIEX','Taiwan'],['^KS11','KOSPI','South Korea'],['^GSPC','S&P 500','United States']];
+const IDX=[['^NSEI','NIFTY 50','India'],['^BSESN','BSE SENSEX','India'],['^N225','Nikkei 225','Japan'],['^HSI','Hang Seng','Hong Kong'],['^SSEC','Shanghai Composite','China','sh000001'],['399001.SZ','Shenzhen Component','China'],['399006.SZ','ChiNext','China'],['000300.SS','CSI 300','China'],['^TWII','TAIEX','Taiwan'],['^KS11','KOSPI','South Korea'],['^GSPC','S&P 500','United States'],['^IXIC','Nasdaq Composite','United States']];
 // [id, label, base, quote, Yahoo symbol]
 const FXP=[['USDINR','USD / INR','USD','INR','INR=X'],['EURUSD','EUR / USD','EUR','USD','EURUSD=X'],['GBPUSD','GBP / USD','GBP','USD','GBPUSD=X'],['USDJPY','USD / JPY','USD','JPY','JPY=X'],['USDCNY','USD / CNY','USD','CNY','CNY=X'],['USDHKD','USD / HKD','USD','HKD','HKD=X'],['USDTWD','USD / TWD','USD','TWD','TWD=X'],['USDKRW','USD / KRW','USD','KRW','KRW=X'],['EURINR','EUR / INR','EUR','INR','EURINR=X']];
 const TICKER=[['^NSEI','NIFTY 50',2],['^BSESN','SENSEX',2],['^N225','NIKKEI',2],['^HSI','HANG SENG',2],['^SSEC','SHANGHAI',2],['^TWII','TAIEX',2],['^KS11','KOSPI',2],['^GSPC','S&P 500',2],['BTC','BTC','$',2],['ETH','ETH','$',2],['USDINR','USD/INR'],['USDJPY','USD/JPY'],['EURUSD','EUR/USD'],['GC=F','GOLD','$',2]];
@@ -147,15 +189,17 @@ const dpAuto=n=>n>=100?2:n>=10?3:4;
 const clock=t=>{const d=new Date(t),n=new Date();return d.toDateString()===n.toDateString()?d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):d.toLocaleDateString([],{day:'numeric',month:'short'})};
 async function getJSON(url,ms){ms=ms||9000;const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);try{const r=await fetch(url,{signal:c.signal,cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}}
 async function pool(items,fn,n){const q=items.slice();await Promise.all(Array.from({length:n||5},async()=>{while(q.length)await fn(q.shift())}))}
-function setStatus(key,state,text){const e=$('#st-'+key);if(!e)return;const l={stocks:'Stocks',crypto:'Crypto',fx:'Currency'}[key];e.innerHTML='<i class="dot '+state+'"></i>'+l+': '+text}
+function setStatus(key,state,text){const e=$('#st-'+key);if(!e)return;const l={stocks:'Stocks',sdk:'stock-sdk',crypto:'Crypto',fx:'Currency'}[key];e.innerHTML='<i class="dot '+state+'"></i>'+l+': '+text}
 
 /* ---------- Yahoo Finance via CORS proxy ---------- */
 const PX={corsproxy:u=>'https://corsproxy.io/?url='+encodeURIComponent(u),allorigins:u=>'https://api.allorigins.win/raw?url='+encodeURIComponent(u)};
 function proxies(){
- if(CFG.stock==='custom'&&CFG.proxy){const p=CFG.proxy;return [['custom',u=>p.includes('{url}')?p.replace('{url}',encodeURIComponent(u)):p+encodeURIComponent(u)]]}
+ const own=CFG.proxy?[['custom',u=>CFG.proxy.includes('{url}')?CFG.proxy.replace('{url}',encodeURIComponent(u)):CFG.proxy+encodeURIComponent(u)]]:[];
+ if(CFG.stock==='custom')return own.length?own:[];
  if(CFG.stock==='corsproxy')return [['corsproxy',PX.corsproxy]];
  if(CFG.stock==='allorigins')return [['allorigins',PX.allorigins]];
- const o=[['corsproxy',PX.corsproxy],['allorigins',PX.allorigins]];return lastPx==='allorigins'?o.reverse():o;
+ const o=[['corsproxy',PX.corsproxy],['allorigins',PX.allorigins]];if(lastPx==='allorigins')o.reverse();
+ return CFG.stock==='sdk'?own.concat(o):o;
 }
 async function yahoo(sym){
  const t='https://query1.finance.yahoo.com/v8/finance/chart/'+encodeURIComponent(sym)+'?interval=15m&range=1d';
@@ -174,17 +218,90 @@ async function yahoo(sym){
  throw err;
 }
 
+/* ---------- stock-sdk (Tencent / EastMoney) ---------- */
+const SDK_VER='2.4.6';
+const SDK_CDN=['https://cdn.jsdelivr.net/npm/stock-sdk@'+SDK_VER+'/dist/index.js','https://esm.sh/stock-sdk@'+SDK_VER,'https://unpkg.com/stock-sdk@'+SDK_VER+'/dist/index.js'];
+let sdkMod=null,sdkInst=null,sdkState='loading',sdkErr='';
+async function loadSdkModule(){
+ if(sdkMod)return sdkMod;
+ let last;
+ for(const u of SDK_CDN){
+  try{const m=await import(u);if(m&&m.StockSDK){sdkMod=m;return m}}catch(e){last=e}
+ }
+ throw last||new Error('stock-sdk could not be loaded from any CDN');
+}
+async function getSdk(){
+ if(sdkInst)return sdkInst;
+ try{
+  const m=await loadSdkModule(),opts={};
+  if(CFG.proxy&&['sdk','sdkonly','custom'].includes(CFG.stock)){
+   const p=CFG.proxy;
+   opts.fetchImpl=(url,init)=>fetch(p.includes('{url}')?p.replace('{url}',encodeURIComponent(String(url))):p+encodeURIComponent(String(url)),init);
+  }
+  sdkInst=new m.StockSDK(opts);sdkState='ready';return sdkInst;
+ }catch(e){sdkState='error';sdkErr=errText(e);throw e}
+}
+const IDX_SDK={};IDX.forEach(i=>{if(i[3])IDX_SDK[i[0]]=i[3]});
+function sdkCode(s){
+ if(IDX_SDK[s])return {m:'cn',code:IDX_SDK[s]};
+ let r;
+ if((r=s.match(/^(\d{6})\.SS$/)))return {m:'cn',code:'sh'+r[1]};
+ if((r=s.match(/^(\d{6})\.SZ$/)))return {m:'cn',code:'sz'+r[1]};
+ if((r=s.match(/^(\d{1,5})\.HK$/)))return {m:'hk',code:r[1].padStart(5,'0')};
+ if(/^[A-Z]{1,5}$/.test(s))return {m:'us',code:s};
+ return null;           // Japan, Taiwan, Korea, India and global indices → Yahoo
+}
+const nk=(m,c)=>{c=String(c||'').toUpperCase().replace(/^(SH|SZ|BJ)(?=\d)/,'');return m==='hk'?c.replace(/^HK/,'').padStart(5,'0'):c};
+async function sdkFetch(syms){
+ const got=new Set(),groups={cn:[],hk:[],us:[]};
+ syms.forEach(s=>{const c=sdkCode(s);if(c)groups[c.m].push({s,code:c.code,key:nk(c.m,c.code)})});
+ if(!groups.cn.length&&!groups.hk.length&&!groups.us.length)return got;
+ let sdk;try{sdk=await getSdk()}catch(e){return got}
+ await Promise.all(Object.keys(groups).map(async m=>{
+  const g=groups[m];if(!g.length)return;
+  try{
+   const res=await sdk.quotes[m](g.map(x=>x.code)),by={};
+   (res||[]).forEach(q=>{by[nk(m,q.code||q.symbol)]=q});
+   g.forEach(x=>{
+    const q=by[x.key];if(!q||q.price==null||isNaN(+q.price)||+q.price===0)return;
+    const price=+q.price,prev=q.prevClose!=null?+q.prevClose:null,old=Q[x.s];
+    const pct=q.changePercent!=null?+q.changePercent:(prev?(price-prev)/prev*100:null);
+    Q[x.s]={price,prev,pct,cur:q.currency||(old&&old.cur),time:q.timestamp||Date.now(),spark:(old&&old.spark)||[],src:'stock-sdk',name:q.name};
+    got.add(x.s);
+   });
+  }catch(e){sdkErr=errText(e)}
+ }));
+ return got;
+}
+
 /* ---------- Stocks & indices ---------- */
+const sparkTried={};
+function ensureSparks(){   // stock-sdk quotes carry no intraday series, so borrow a sparkline from Yahoo once
+ IDX.forEach(i=>{const k=i[0],q=Q[k];
+  if(q&&q.src==='stock-sdk'&&!(q.spark&&q.spark.length)&&!sparkTried[k]){sparkTried[k]=1;yahoo(k).then(y=>{if(Q[k]){Q[k].spark=y.spark;render()}}).catch(()=>{})}
+ });
+}
 async function refreshStocks(onlyTab){
  if(busy.s)return;busy.s=true;
  try{
   const tabSyms=MK[CFG.tab].list.map(s=>s[1]);
   const syms=onlyTab?tabSyms:[...new Set([...IDX.map(i=>i[0]),'GC=F',...tabSyms])];
-  let ok=0,fail=0;
-  await pool(syms,async s=>{try{Q[s]=await yahoo(s);ok++}catch(e){fail++}},5);
-  if(ok){setStatus('stocks',fail?'warn':'ok',ok+' quotes'+(fail?' · '+fail+' failed':'')+' via '+(CFG.stock==='custom'?'your proxy':lastPx))}
-  else setStatus('stocks','bad','unavailable — try another proxy option');
-  Q._stocksFailed=!ok&&!Object.keys(Q).some(k=>k[0]!=='_'&&Q[k].src==='Yahoo Finance');
+  const useSdk=CFG.stock==='sdk'||CFG.stock==='sdkonly';
+  let nSdk=0,nYh=0,fail=0,todo=syms;
+  if(useSdk){const got=await sdkFetch(syms);nSdk=got.size;todo=syms.filter(s=>!got.has(s))}
+  if(CFG.stock==='sdkonly')fail=todo.filter(s=>sdkCode(s)).length;   // names stock-sdk cannot cover are simply not requested
+  else await pool(todo,async s=>{try{Q[s]=await yahoo(s);nYh++}catch(e){fail++}},5);
+  const ok=nSdk+nYh;
+  if(ok)setStatus('stocks',fail?'warn':'ok',ok+' quotes'+(nSdk?' · '+nSdk+' via stock-sdk':'')+(nYh?' · '+nYh+' via Yahoo':'')+(fail?' · '+fail+' unavailable':''));
+  else setStatus('stocks','bad','unavailable — try another source option');
+  if(useSdk){
+   if(sdkState==='error')setStatus('sdk','bad','not loaded — '+sdkErr.slice(0,70));
+   else if(nSdk)setStatus('sdk','ok','v'+SDK_VER+' · '+nSdk+' quotes');
+   else if(sdkState==='ready')setStatus('sdk','warn','loaded, no quotes'+(sdkErr?' — '+sdkErr.slice(0,60):' (may be CORS-blocked: add a proxy)'));
+   else setStatus('sdk','warn','loading…');
+  }else setStatus('sdk','warn','off · Yahoo only');
+  Q._stocksFailed=!ok;
+  ensureSparks();
  }finally{busy.s=false;render()}
 }
 
@@ -274,7 +391,7 @@ function renderStocks(){
   const price=q?fmt(q.price,dpAuto(q.price))+'<span class="cur">'+cur+'</span>':(Q._stocksFailed?'—':'…');
   const pct=q&&q.pct!=null?'<span class="'+(q.pct>=0?'up':'down')+'">'+(q.pct>=0?'▲ ':'▼ ')+Math.abs(q.pct).toFixed(2)+'%</span>':'—';
   const g=s[3]==='HKG'?String(parseInt(s[1],10)):s[1].split('.')[0];
-  return '<tr><td><span class="asset-name">'+s[0]+'</span><span class="asset-sub">'+s[1]+'</span></td><td>'+s[2]+'</td><td class="right num" title="'+(q?'Quote time '+new Date(q.time).toLocaleString():'')+'">'+price+'</td><td class="right num">'+pct+'</td><td class="right">'+s[4]+'</td><td class="right"><a class="xlink" href="https://finance.yahoo.com/quote/'+encodeURIComponent(s[1])+'" target="_blank" rel="noopener">Yahoo ↗</a><a class="xlink" href="https://www.google.com/finance/quote/'+g+':'+s[3]+'" target="_blank" rel="noopener">Google ↗</a></td></tr>';
+  return '<tr><td><span class="asset-name">'+s[0]+'</span><span class="asset-sub">'+s[1]+'</span></td><td>'+s[2]+(q?'<span class="asset-sub">'+esc(q.src)+'</span>':'')+'</td><td class="right num" title="'+(q?'Quote time '+new Date(q.time).toLocaleString():'')+'">'+price+'</td><td class="right num">'+pct+'</td><td class="right">'+s[4]+'</td><td class="right"><a class="xlink" href="https://finance.yahoo.com/quote/'+encodeURIComponent(s[1])+'" target="_blank" rel="noopener">Yahoo ↗</a><a class="xlink" href="https://www.google.com/finance/quote/'+g+':'+s[3]+'" target="_blank" rel="noopener">Google ↗</a></td></tr>';
  }).join('');
  $('#stockRows').innerHTML=rows||'<tr><td colspan="6" style="color:var(--muted)">No matches in '+m.name+'.</td></tr>';
 }
@@ -324,11 +441,11 @@ function schedule(){
 function refreshAll(){refreshStocks();refreshCrypto(true);refreshFx()}
 function syncControls(){
  $('#selStock').value=CFG.stock;$('#selCrypto').value=CFG.crypto;$('#selFx').value=CFG.fx;$('#selRefresh').value=String(CFG.refresh);
- $('#proxyUrl').value=CFG.proxy;$('#proxyField').style.display=CFG.stock==='custom'?'':'none';
+ $('#proxyUrl').value=CFG.proxy;$('#proxyField').style.display=['custom','sdk','sdkonly'].includes(CFG.stock)?'':'none';
  $('#btnPause').textContent=CFG.paused?'▶ Resume updates':'⏸ Pause updates';
 }
-$('#selStock').addEventListener('change',e=>{CFG.stock=e.target.value;save();syncControls();refreshStocks()});
-$('#proxyUrl').addEventListener('change',e=>{CFG.proxy=e.target.value.trim();save();refreshStocks();refreshFx()});
+$('#selStock').addEventListener('change',e=>{CFG.stock=e.target.value;save();sdkInst=null;sdkState='loading';syncControls();refreshStocks()});
+$('#proxyUrl').addEventListener('change',e=>{CFG.proxy=e.target.value.trim();save();sdkInst=null;sdkState='loading';refreshStocks();refreshFx()});
 $('#selCrypto').addEventListener('change',e=>{CFG.crypto=e.target.value;save();refreshCrypto(true)});
 $('#selFx').addEventListener('change',e=>{CFG.fx=e.target.value;save();renderFx();schedule();refreshFx()});
 $('#selRefresh').addEventListener('change',e=>{CFG.refresh=+e.target.value;save();schedule()});
@@ -341,7 +458,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!CFG.paus
 window.searchSite=function(){
  const q=$('#searchInput').value.trim();if(!q)return;const l=q.toLowerCase();
  const go=h=>{location.hash=h};
- const kw=[['bitcoin','#crypto'],['btc','#crypto'],['ethereum','#crypto'],['crypto','#crypto'],['forex','#fx'],['currency','#fx'],['rupee','#fx'],['dollar','#fx'],['usd','#fx'],['inr','#fx'],['nifty','#india'],['sensex','#india'],['mutual','#funds'],['fund','#funds'],['sip','#calculator'],['bond','#bonds'],['yield','#bonds']];
+ const kw=[['playground','#playground'],['k-line','#playground'],['kline','#playground'],['stock-sdk','#playground'],['bitcoin','#crypto'],['btc','#crypto'],['ethereum','#crypto'],['crypto','#crypto'],['forex','#fx'],['currency','#fx'],['rupee','#fx'],['dollar','#fx'],['usd','#fx'],['inr','#fx'],['nifty','#india'],['sensex','#india'],['mutual','#funds'],['fund','#funds'],['sip','#calculator'],['bond','#bonds'],['yield','#bonds']];
  const k=kw.find(x=>l.includes(x[0]));if(k)return go(k[1]);
  if(l.length>=3){
   for(const key of Object.keys(MK)){
@@ -358,8 +475,142 @@ window.searchSite=function(){
  $('#learn').scrollIntoView();alert('Search covers countries, tickers and company names. Connect a search index to search articles for: '+q);
 };
 
+/* ---------- Playground ---------- */
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const errText=e=>(e&&e.code?e.code+': ':'')+String(e&&e.message||e);
+const nn=(v,d)=>(v==null||v===''||isNaN(+v))?'—':fmt(+v,d==null?dpAuto(+v):d);
+const PG_SYM={cn:'600519,000001,sh000300',hk:'00700,09988,01299',us:'AAPL,MSFT,NVDA',fund:'510300,161725'};
+const KL_SYM={cn:'600519',hk:'00700',us:'AAPL'};
+let pqTimer=null;
+
+async function pgQuotes(){
+ const m=$('#pqMarket').value,list=$('#pqSymbols').value.split(/[\s,，]+/).filter(Boolean);
+ const msg=$('#pqMsg');msg.className='pg-msg';
+ if(!list.length){msg.textContent='Enter at least one symbol.';return}
+ msg.textContent='Fetching…';
+ try{
+  const sdk=await getSdk(),res=await sdk.quotes[m](list);
+  const rows=(res||[]).map(q=>{
+   const p=q.price!=null?q.price:q.nav,c=q.changePercent,cls=c==null?'':(c>=0?'up':'down');
+   return '<tr><td class="asset-name">'+esc(q.name||'—')+'</td><td>'+esc(q.code||q.symbol||'')+'</td><td class="right num">'+nn(p)+'</td><td class="right num '+cls+'">'+(q.change!=null?(q.change>=0?'+':'')+nn(q.change):'—')+'</td><td class="right num '+cls+'">'+(c!=null?(c>=0?'▲ ':'▼ ')+Math.abs(c).toFixed(2)+'%':'—')+'</td><td class="right num">'+nn(q.open)+'</td><td class="right num">'+nn(q.high)+'</td><td class="right num">'+nn(q.low)+'</td><td class="right num">'+nn(q.prevClose)+'</td><td class="right">'+esc(q.currency||'')+'</td></tr>';
+  }).join('');
+  $('#pqRows').innerHTML=rows||'<tr><td colspan="10" style="color:var(--muted)">No data returned for those symbols.</td></tr>';
+  msg.textContent=(res||[]).length+' result(s) · updated '+new Date().toLocaleTimeString()+' · via stock-sdk';
+ }catch(e){msg.className='pg-msg err';msg.textContent=errText(e)+' — if this is a network/CORS error, set a proxy under “Live data sources”.'}
+}
+
+const maCalc=(a,n)=>a.map((_,i)=>i<n-1?null:a.slice(i-n+1,i+1).reduce((x,y)=>x+y,0)/n);
+const KL={bars:[],pl:56,pr:12,W:900,step:1};
+const MA_COL={5:'#f0b84b',20:'#0c6f99',60:'#7a4bd1'};
+async function pgKline(){
+ const m=$('#klMarket').value,sym=$('#klSymbol').value.trim(),msg=$('#klMsg');msg.className='pg-msg';
+ if(!sym){msg.textContent='Enter a symbol.';return}
+ msg.textContent='Loading K-line…';
+ try{
+  const sdk=await getSdk(),adj=$('#klAdjust').value;
+  const data=await sdk.kline[m](sym,{period:$('#klPeriod').value,adjust:adj==='none'?'':adj});
+  const all=(data||[]).filter(k=>k&&k.open!=null&&k.close!=null&&k.high!=null&&k.low!=null);
+  if(all.length<2)throw new Error('No K-line data returned for '+sym);
+  const n=+$('#klBars').value,from=Math.max(0,all.length-n),closes=all.map(k=>+k.close),lines={};
+  [5,20,60].forEach(p=>{if($('#klMa'+p).checked)lines[p]=maCalc(closes,p).slice(from)});
+  drawKline(all.slice(from),lines);
+  const last=all[all.length-1];
+  msg.textContent=sym+' · '+(all.length)+' bars loaded · latest '+(last.date||last.time||'')+' close '+nn(last.close)+(last.currency?' '+last.currency:'');
+ }catch(e){msg.className='pg-msg err';msg.textContent=errText(e)}
+}
+function drawKline(bars,lines){
+ const W=KL.W,H=430,pl=KL.pl,pr=KL.pr,pt=14,ph=285,vt=320,vh=72;
+ const hi=Math.max(...bars.map(b=>+b.high)),lo=Math.min(...bars.map(b=>+b.low)),rg=(hi-lo)||1;
+ const y=v=>pt+ph-(v-lo)/rg*ph,step=(W-pl-pr)/bars.length,cw=Math.max(1,step*.66);
+ const vmax=Math.max(...bars.map(b=>+b.volume||0))||1;
+ KL.bars=bars;KL.step=step;
+ let s='';
+ for(let i=0;i<=4;i++){const v=lo+rg*i/4,yy=y(v);s+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+yy.toFixed(1)+'" y2="'+yy.toFixed(1)+'" stroke="#e5ebf1"/><text x="'+(pl-6)+'" y="'+(yy+4).toFixed(1)+'" text-anchor="end" font-size="10" fill="#6d7b8b">'+fmt(v,2)+'</text>'}
+ bars.forEach((b,i)=>{
+  const x=pl+i*step+step/2,up=+b.close>=+b.open,col=up?'#087f5b':'#c13b4b',yo=y(+b.open),yc=y(+b.close),vv=(+b.volume||0)/vmax*vh;
+  s+='<line x1="'+x.toFixed(1)+'" x2="'+x.toFixed(1)+'" y1="'+y(+b.high).toFixed(1)+'" y2="'+y(+b.low).toFixed(1)+'" stroke="'+col+'"/>';
+  s+='<rect x="'+(x-cw/2).toFixed(1)+'" y="'+Math.min(yo,yc).toFixed(1)+'" width="'+cw.toFixed(1)+'" height="'+Math.max(1,Math.abs(yo-yc)).toFixed(1)+'" fill="'+col+'"/>';
+  s+='<rect x="'+(x-cw/2).toFixed(1)+'" y="'+(vt+vh-vv).toFixed(1)+'" width="'+cw.toFixed(1)+'" height="'+vv.toFixed(1)+'" fill="'+col+'" opacity=".35"/>';
+ });
+ Object.keys(lines).forEach(k=>{
+  const pts=lines[k].map((v,i)=>v==null?null:(pl+i*step+step/2).toFixed(1)+','+y(v).toFixed(1)).filter(Boolean);
+  if(pts.length>1)s+='<polyline fill="none" stroke="'+MA_COL[k]+'" stroke-width="1.5" points="'+pts.join(' ')+'"/>';
+ });
+ for(let i=0;i<=5;i++){const idx=Math.round(i*(bars.length-1)/5),b=bars[idx];s+='<text x="'+(pl+idx*step+step/2).toFixed(1)+'" y="'+(H-6)+'" text-anchor="middle" font-size="10" fill="#6d7b8b">'+esc(String(b.date||b.time||'').slice(0,10))+'</text>'}
+ s+='<text x="'+pl+'" y="'+(vt-4)+'" font-size="10" fill="#6d7b8b">Volume</text>';
+ $('#klSvg').innerHTML=s;
+ $('#klInfo').textContent='Hover the chart for open / high / low / close.';
+}
+function klHover(e){
+ const svg=$('#klSvg'),r=svg.getBoundingClientRect();if(!KL.bars.length||!r.width)return;
+ const x=(e.clientX-r.left)/r.width*KL.W,i=Math.floor((x-KL.pl)/KL.step);
+ if(i<0||i>=KL.bars.length)return;
+ const b=KL.bars[i],prev=i>0?KL.bars[i-1]:null,chg=prev?(+b.close-+prev.close)/+prev.close*100:(b.changePercent!=null?+b.changePercent:null);
+ $('#klInfo').innerHTML='<b>'+esc(String(b.date||b.time||''))+'</b> &nbsp; O '+nn(b.open)+' &nbsp; H '+nn(b.high)+' &nbsp; L '+nn(b.low)+' &nbsp; C <b>'+nn(b.close)+'</b>'+(chg!=null?' &nbsp; <span class="'+(chg>=0?'up':'down')+'">'+(chg>=0?'▲ ':'▼ ')+Math.abs(chg).toFixed(2)+'%</span>':'')+' &nbsp; Vol '+(b.volume!=null?Number(b.volume).toLocaleString('en-US'):'—');
+}
+
+const J=a=>a.join('\n');
+const PRESETS=[
+ ['A-share quotes',J(["// Live A-share quotes (Tencent / EastMoney via stock-sdk)","const q = await sdk.quotes.cn(['sh600519', 'sz000858', 'sh601318']);","return q.map(x => ({ name: x.name, price: x.price, changePercent: x.changePercent }));"])],
+ ['Hong Kong quotes',J(["const q = await sdk.quotes.hk(['00700', '09988', '01299']);","return q.map(x => ({ name: x.name, price: x.price, currency: x.currency, changePercent: x.changePercent }));"])],
+ ['US quotes',J(["const q = await sdk.quotes.us(['AAPL', 'MSFT', 'NVDA']);","return q.map(x => ({ symbol: x.symbol, price: x.price, changePercent: x.changePercent }));"])],
+ ['ETF / fund quote',J(["// 510300 = CSI 300 ETF","return await sdk.quotes.fund(['510300']);"])],
+ ['Daily K-line (last 5 bars)',J(["const k = await sdk.kline.cn('600519', { period: 'daily', adjust: 'qfq' });","return k.slice(-5);"])],
+ ['K-line + MA / MACD',J(["const k = await sdk.kline.withIndicators('600519', {","  period: 'daily',","  indicators: { ma: [5, 20], macd: true },","});","return k.slice(-3);"])],
+ ['Moving-average crossover (own code)',J(["const k = await sdk.kline.cn('600519', { period: 'daily' });","const closes = k.map(x => x.close);","const fast = ma(closes, 5), slow = ma(closes, 20);","const cross = [];","for (let i = 21; i < k.length; i++) {","  if (fast[i-1] <= slow[i-1] && fast[i] > slow[i]) cross.push({ date: k[i].date, signal: 'golden cross' });","  if (fast[i-1] >= slow[i-1] && fast[i] < slow[i]) cross.push({ date: k[i].date, signal: 'death cross' });","}","return cross.slice(-5);"])],
+ ['Search a stock',J(["return await sdk.search('腾讯');"])],
+ ['Market status & trading day',J(["const today = new Date().toISOString().slice(0, 10);","return {","  status: await sdk.calendar.marketStatus('CN'),","  tradingDay: await sdk.calendar.isTradingDay(today),","};"])],
+ ['Industry boards (first 10)',J(["const boards = await sdk.board.industry.list();","return boards.slice(0, 10);"])],
+ ['Northbound capital summary',J(["return await sdk.northbound.summary();"])],
+ ["This page's live feeds",J(["// `live` holds the quotes this page is showing right now","return {","  nifty: live['^NSEI'],","  nikkei: live['^N225'],","  btc: live.BTC,","  eth: live.ETH,","  usdinr: live.USDINR,","};"])],
+ ['Cross-check SDK vs page feed',J(["const [q] = await sdk.quotes.cn(['sh600519']);","const page = live['600519.SS'];","return {","  sdkPrice: q.price,","  pageFeedPrice: page ? page.price : 'switch the Stocks tab to China first',","  pageFeedSource: page ? page.src : null,","};"])]
+];
+function fmtLog(x){if(typeof x==='string')return x;try{return JSON.stringify(x,null,2)}catch(e){return String(x)}}
+function liveSnapshot(){const o={};Object.keys(Q).forEach(k=>{if(k[0]==='_')return;const q=Q[k];o[k]={price:q.price,pct:q.pct==null?null:+q.pct.toFixed(3),currency:q.cur,source:q.src}});return o}
+async function pgRun(){
+ const out=$('#pgOut'),code=$('#pgCode').value,logs=[];
+ out.textContent='Running…';
+ const con={log:(...a)=>logs.push(a.map(fmtLog).join(' ')),info:(...a)=>logs.push(a.map(fmtLog).join(' ')),warn:(...a)=>logs.push('[warn] '+a.map(fmtLog).join(' ')),error:(...a)=>logs.push('[error] '+a.map(fmtLog).join(' '))};
+ let sdk,fail=null;
+ try{sdk=await getSdk()}catch(e){fail=e;sdk=new Proxy({},{get(){throw new Error('stock-sdk failed to load: '+errText(fail))}})}
+ try{
+  const AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;
+  const fn=new AsyncFunction('sdk','live','console','ma','sleep',code);
+  const res=await Promise.race([fn(sdk,liveSnapshot(),con,maCalc,ms=>new Promise(r=>setTimeout(r,ms))),new Promise((_,rej)=>setTimeout(()=>rej(new Error('Timed out after 45 s')),45000))]);
+  let txt=res===undefined?'(no return value)':fmtLog(res);
+  if(txt.length>60000)txt=txt.slice(0,60000)+'\n… output truncated';
+  out.innerHTML=(logs.length?'<span class="log">'+esc(logs.join('\n'))+'</span>\n\n':'')+esc(txt);
+ }catch(e){out.innerHTML=(logs.length?'<span class="log">'+esc(logs.join('\n'))+'</span>\n\n':'')+'<span class="err">'+esc(errText(e))+'</span>'}
+}
+function initPlayground(){
+ $$('#pgTabs .tab').forEach(b=>b.addEventListener('click',()=>{
+  $$('#pgTabs .tab').forEach(x=>x.classList.toggle('active',x===b));
+  $$('.pg-pane').forEach(p=>p.classList.toggle('active',p.id==='pg-'+b.dataset.pg));
+ }));
+ $('#pqMarket').addEventListener('change',e=>{$('#pqSymbols').value=PG_SYM[e.target.value]});
+ $('#klMarket').addEventListener('change',e=>{$('#klSymbol').value=KL_SYM[e.target.value]});
+ $('#pqGo').addEventListener('click',pgQuotes);
+ $('#pqSymbols').addEventListener('keydown',e=>{if(e.key==='Enter')pgQuotes()});
+ $('#pqAuto').addEventListener('change',e=>{clearInterval(pqTimer);if(e.target.checked){pgQuotes();pqTimer=setInterval(()=>{if(!document.hidden)pgQuotes()},10000)}});
+ $('#klGo').addEventListener('click',pgKline);
+ $('#klSymbol').addEventListener('keydown',e=>{if(e.key==='Enter')pgKline()});
+ $('#klSvg').addEventListener('mousemove',klHover);
+ $('#pgPreset').innerHTML=PRESETS.map((p,i)=>'<option value="'+i+'">'+esc(p[0])+'</option>').join('');
+ $('#pgCode').value=PRESETS[0][1];
+ $('#pgPreset').addEventListener('change',e=>{$('#pgCode').value=PRESETS[+e.target.value][1]});
+ $('#pgRun').addEventListener('click',pgRun);
+ $('#pgCode').addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();pgRun()}
+  if(e.key==='Tab'){e.preventDefault();const t=e.target,s=t.selectionStart;t.value=t.value.slice(0,s)+'  '+t.value.slice(t.selectionEnd);t.selectionStart=t.selectionEnd=s+2}
+ });
+ $('#pgCopy').addEventListener('click',async()=>{const b=$('#pgCopy');try{await navigator.clipboard.writeText($('#pgCode').value);b.textContent='Copied ✓'}catch(e){$('#pgCode').select();b.textContent='Press Ctrl/⌘ + C'}setTimeout(()=>b.textContent='Copy code',1600)});
+ // Load first results lazily when the section scrolls into view
+ let started=false;const start=()=>{if(started)return;started=true;pgQuotes();pgKline()};
+ if(typeof IntersectionObserver==='function'){const io=new IntersectionObserver(es=>{if(es.some(x=>x.isIntersecting)){io.disconnect();start()}},{rootMargin:'200px'});io.observe($('#playground'))}else setTimeout(start,3000);
+}
+
 /* ---------- Init ---------- */
-buildStatic();syncControls();render();schedule();
+buildStatic();syncControls();initPlayground();render();schedule();
 seedHistory().finally(()=>refreshCrypto(true));
 refreshStocks();refreshFx();
 })();
