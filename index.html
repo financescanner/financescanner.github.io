@@ -6,23 +6,26 @@
 <meta name="theme-color" content="#071a2d">
 <title>FinanceScanner — Live Markets, Stocks, Crypto &amp; Currency Rates</title>
 
-<!-- ===== SEARCH VISIBILITY (replace YOUR-DOMAIN.com with your real domain) ===== -->
+<!-- ===== SEARCH VISIBILITY: canonical domain configured for FinanceScanner GitHub Pages ===== -->
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://YOUR-DOMAIN.com/">
-<meta name="google-site-verification" content="PASTE_SEARCH_CONSOLE_TOKEN_HERE">
+<link rel="canonical" href="https://financescanner.github.io/">
+<!-- Optional: add your real Google Search Console verification token here after verifying the property. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FinanceScanner">
 <meta property="og:title" content="FinanceScanner — Live Markets, Stocks, Crypto &amp; Currency Rates">
 <meta property="og:description" content="Live Indian, US and Asian market data, crypto prices, currency rates, mutual fund and bond education, and a free SIP calculator.">
-<meta property="og:url" content="https://YOUR-DOMAIN.com/">
+<meta property="og:url" content="https://financescanner.github.io/">
 <meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary">\n<meta name="referrer" content="strict-origin-when-cross-origin">\n<meta name="color-scheme" content="light">
 <meta name="twitter:title" content="FinanceScanner — Live Markets, Stocks, Crypto &amp; Currency Rates">
 <meta name="twitter:description" content="Live Indian, US and Asian market data, crypto prices, currency rates and a free SIP calculator.">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"FinanceScanner","url":"https://YOUR-DOMAIN.com/","inLanguage":"en","description":"Live Indian, US and Asian market data, crypto prices, currency rates, mutual fund and bond education, and a free SIP calculator."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"FinanceScanner","url":"https://financescanner.github.io/","inLanguage":"en","description":"Live Indian, US and Asian market data, crypto prices, currency rates, mutual fund and bond education, and a free SIP calculator."}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"FinanceScanner","url":"https://financescanner.github.io/","email":"contact@financescanner.github.io","description":"Independent financial market data and investor education."}
+</script>
 
 <!-- ===== GOOGLE ADSENSE (replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID) ===== -->
-<meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+<!-- Replace the placeholder publisher ID below with your real AdSense publisher ID after approval. -->\n<meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 <style>
 :root{--navy:#071a2d;--navy2:#0d2942;--ink:#17283a;--muted:#6d7b8b;--line:#e5ebf1;--bg:#f4f7fa;--green:#087f5b;--red:#c13b4b;--gold:#f0b84b;--white:#fff;--shadow:0 10px 30px #0b23380b}
@@ -60,7 +63,7 @@
 .pg-out{background:#f4f7fa;border:1px solid var(--line);border-radius:10px;padding:14px;max-height:380px;overflow:auto;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;margin:12px 0 0;color:#17283a}.pg-out .err{color:var(--red);font-weight:700}.pg-out .log{color:#0c6f99}
 .btn.run{padding:10px 18px}
 
-/* ---- AdSense units ---- */
+/* ---- AdSense units: replace the publisher ID and all data-ad-slot placeholders after approval ---- */
 .ad-slot{display:block;border:0;background:transparent;min-height:100px;margin:20px 0;padding:0;text-align:center;letter-spacing:0}
 .ad-slot:before{content:"Advertisement";display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8997a5;margin-bottom:4px}
 .ad-slot ins.adsbygoogle{display:block;width:100%}
@@ -72,7 +75,7 @@
 </head>
 <body>
 <div class="topline"><span><b>MARKETS</b> · Independent market intelligence for everyday investors</span><span id="dateLine">Live feeds · connecting…</span></div>
-<header class="header"><a class="brand" href="#"><span>Market</span>Scope<span>°</span></a><nav class="nav"><a href="#india">Indices</a><a href="#stocks">Stocks by Country</a><a href="#crypto">Crypto</a><a href="#fx">Currency</a><a href="#playground">Playground</a><a href="#funds">Mutual Funds</a><a href="#bonds">Bonds</a><a href="#learn">Learn</a><a class="nav-cta" href="#newsletter">Free Daily Brief ↗</a></nav></header>
+<header class="header"><a class="brand" href="/" aria-label="FinanceScanner home"><span>Finance</span>Scanner<span>°</span></a><nav class="nav"><a href="#india">Indices</a><a href="#stocks">Stocks by Country</a><a href="#crypto">Crypto</a><a href="#fx">Currency</a><a href="#playground">Playground</a><a href="#funds">Mutual Funds</a><a href="#bonds">Bonds</a><a href="#learn">Learn</a><a href="#faq">FAQ</a><a class="nav-cta" href="#newsletter">Free Daily Brief ↗</a></nav></header>
 <div class="ticker" aria-label="Live market ticker"><div class="ticker-marquee" id="tickerTrack"></div></div>
 <section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Smarter money starts here</div><h1>Markets, made<br>clear.</h1><p>Your daily destination for Indian stocks, US markets, mutual funds and bonds. Understand what moved, why it matters, and what to watch next.</p><div class="search"><input id="searchInput" placeholder="Search stocks, funds, topics…" aria-label="Search markets"><button onclick="searchSite()">Search ↗</button></div><div class="hero-note">Research first. Understand the risks. Make your own decisions.</div></div><div class="hero-card"><h3>Market pulse</h3><p>Live snapshot · last close when a market is shut</p>
 <div class="index-row"><div><small>NIFTY 50</small><strong data-price="^NSEI" data-dp="2">…</strong></div><span class="change" data-pct="^NSEI"></span></div>
@@ -141,6 +144,14 @@
 <div class="ad-slot"><ins class="adsbygoogle" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="2222222222" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
 <section class="section" id="newsletter"><div class="newsletter"><div><span class="eyebrow" style="color:#087f5b">The FinanceScanner briefing</span><h2>Make sense of the market in 5 minutes.</h2><p>A future newsletter signup slot. Connect a consent-based email service before collecting subscriber details.</p></div><form onsubmit="event.preventDefault();document.getElementById('newsMsg').textContent='Demo only: connect an email platform to activate subscriptions.';"><input type="email" placeholder="Your email address" aria-label="Your email address" required><button class="btn" type="submit">Notify me ↗</button><div id="newsMsg" style="font-size:11px;grid-column:1/-1;color:#526878"></div></form></div></section>
 
+<section class="section" id="faq"><div class="section-head"><div><h2>Frequently asked questions</h2><p>Quick answers about market data and the tools on FinanceScanner.</p></div></div><div class="grid cards3">
+<div class="card"><h3>Are the market prices real-time?</h3><p>Some feeds may be delayed, unavailable, or show the latest close when an exchange is shut. Check the displayed source and verify important prices with your broker or exchange.</p></div>
+<div class="card"><h3>Can I use this site to choose investments?</h3><p>Use the dashboard for general research and education, not as a personalised recommendation. Review company filings, valuation, fees, risks and your own circumstances before investing.</p></div>
+<div class="card"><h3>How is the SIP calculator calculated?</h3><p>It estimates a future value from the monthly contribution, duration and assumed annual return entered. Actual returns are variable and can be negative; the estimate is not guaranteed.</p></div>
+<div class="card"><h3>Does FinanceScanner charge for these tools?</h3><p>The market dashboard and SIP calculator are provided for general informational use. The site may earn revenue from advertising after advertising account and site approval.</p></div>
+<div class="card"><h3>Which countries are covered?</h3><p>The dashboard lists selected companies and benchmarks for India, China, Hong Kong, Japan, Taiwan, South Korea and the United States. Coverage and data availability vary by source.</p></div>
+<div class="card"><h3>Why can a quote differ from my broker?</h3><p>Providers can use different exchange feeds, timestamps, currencies, adjustment methods and delay intervals. Compare the same instrument and timestamp and rely on your trading venue for execution prices.</p></div>
+</div></section>
 <section class="section legal" id="about"><div class="section-head"><div><h2>About FinanceScanner</h2></div></div><div class="card">
 <p>FinanceScanner is an independent website that brings together market information for everyday investors: benchmark indices across India, Asia and the US, Bitcoin and Ethereum prices, currency rates, and plain-language education on mutual funds, bonds and SIP investing.</p>
 <h3>What we do</h3><p>We display quotes from public data providers, explain how markets and products work, and offer free tools such as a SIP calculator. We do not sell securities, manage money or give personalised investment advice.</p>
@@ -161,15 +172,15 @@
 <h3>Data providers contacted by your browser</h3><p>To show live prices, your browser connects directly to third-party services such as Yahoo Finance (via public proxy services), stock-sdk data sources, Binance, Coinbase, Kraken, CoinGecko, ExchangeRate-API and Frankfurter. These services can see your IP address and request details under their own privacy policies.</p>
 <h3>Local storage</h3><p>The site stores your display preferences (such as the chosen data source and refresh rate) in your browser’s local storage. This stays on your device and you can clear it at any time.</p>
 <h3>Children</h3><p>The site is not directed at children under 13 and we do not knowingly collect their information.</p>
-<h3>Your rights</h3><p>Depending on where you live (for example under the GDPR, UK GDPR or Indian data-protection law) you may have rights to access, correct or delete personal data. Contact us at <a href="mailto:contact@YOUR-DOMAIN.com">contact@YOUR-DOMAIN.com</a>.</p>
+<h3>Your rights</h3><p>Depending on where you live (for example under the GDPR, UK GDPR or Indian data-protection law) you may have rights to access, correct or delete personal data. Contact us at <a href="mailto:contact@financescanner.github.io">contact@financescanner.github.io</a>.</p>
 <h3>Changes</h3><p>We may update this policy; the date above shows the latest version.</p></div></section>
 
 <section class="section legal" id="contact"><div class="section-head"><div><h2>Contact us</h2></div></div><div class="card">
 <p>We read every message. Please allow a few business days for a reply.</p>
-<ul><li>General questions and corrections: <a href="mailto:contact@YOUR-DOMAIN.com">contact@YOUR-DOMAIN.com</a></li><li>Advertising and partnerships: <a href="mailto:contact@YOUR-DOMAIN.com">contact@YOUR-DOMAIN.com</a></li></ul>
+<ul><li>General questions and corrections: <a href="mailto:contact@financescanner.github.io">contact@financescanner.github.io</a></li><li>Advertising and partnerships: <a href="mailto:contact@financescanner.github.io">contact@financescanner.github.io</a></li></ul>
 <p>We cannot give personal investment advice or recommend specific trades by email.</p></div></section>
 </main>
-<footer class="footer"><div class="wrap"><div class="footer-grid"><div><a class="brand" href="#"><span>Market</span>Scope<span>°</span></a><p>Clear, accessible market information for curious investors in India and around the world.</p><p>Independent editorial concept. Not a broker or investment adviser.</p></div><div><h4>Markets</h4><a href="#india">Market indices</a><a href="#crypto">Bitcoin &amp; Ethereum</a><a href="#fx">Currency rates</a><a href="#stocks">Stocks by country</a><a href="#bonds">Bonds & yields</a><a href="#funds">Mutual funds</a></div><div><h4>Learn</h4><a href="#playground">Data playground</a><a href="#calculator">SIP calculator</a><a href="https://stock-sdk.linkdiary.cn" target="_blank" rel="noopener">stock-sdk docs</a><a href="#learn">Market explainers</a><a href="https://investor.sebi.gov.in/" target="_blank" rel="noopener">SEBI Investor</a><a href="https://www.amfiindia.com/" target="_blank" rel="noopener">AMFI</a></div><div><h4>Site information</h4><a href="#about">About us</a><a href="#privacy">Privacy policy</a><a href="#terms">Terms &amp; disclaimer</a><a href="#contact">Contact</a></div></div><div class="copyright">© 2026 FinanceScanner concept website. All rights reserved. · Market data from stock-sdk, Yahoo Finance, Binance, Coinbase, Kraken, CoinGecko, ExchangeRate-API and Frankfurter; may be delayed.</div><div class="disclaimer" id="disclaimer"><b>Financial disclaimer:</b> Content is for general information and education only, not investment advice, a recommendation, or an offer to buy or sell securities. Market prices can change rapidly. Verify quotes, filings, fund documents, yields and regulations with official sources. Investing involves risk, including loss of principal. Do not publish personalized securities recommendations or paid research without checking applicable Indian and US regulatory requirements.</div></div></footer>
+<footer class="footer"><div class="wrap"><div class="footer-grid"><div><a class="brand" href="/" aria-label="FinanceScanner home"><span>Finance</span>Scanner<span>°</span></a><p>Clear, accessible market information for curious investors in India and around the world.</p><p>Independent editorial concept. Not a broker or investment adviser.</p></div><div><h4>Markets</h4><a href="#india">Market indices</a><a href="#crypto">Bitcoin &amp; Ethereum</a><a href="#fx">Currency rates</a><a href="#stocks">Stocks by country</a><a href="#bonds">Bonds & yields</a><a href="#funds">Mutual funds</a></div><div><h4>Learn</h4><a href="#playground">Data playground</a><a href="#calculator">SIP calculator</a><a href="https://stock-sdk.linkdiary.cn" target="_blank" rel="noopener">stock-sdk docs</a><a href="#learn">Market explainers</a><a href="#faq">Frequently asked questions</a><a href="https://investor.sebi.gov.in/" target="_blank" rel="noopener">SEBI Investor</a><a href="https://www.amfiindia.com/" target="_blank" rel="noopener">AMFI</a></div><div><h4>Site information</h4><a href="#about">About us</a><a href="#privacy">Privacy policy</a><a href="#terms">Terms &amp; disclaimer</a><a href="#contact">Contact</a></div></div><div class="copyright">© 2026 FinanceScanner. All rights reserved. · Market data from stock-sdk, Yahoo Finance, Binance, Coinbase, Kraken, CoinGecko, ExchangeRate-API and Frankfurter; may be delayed.</div><div class="disclaimer" id="disclaimer"><b>Financial disclaimer:</b> Content is for general information and education only, not investment advice, a recommendation, or an offer to buy or sell securities. Market prices can change rapidly. Verify quotes, filings, fund documents, yields and regulations with official sources. Investing involves risk, including loss of principal. Do not publish personalized securities recommendations or paid research without checking applicable Indian and US regulatory requirements.</div></div></footer>
 <script>
 (function(){
 const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
@@ -672,7 +683,33 @@ seedHistory().finally(()=>refreshCrypto(true));
 refreshStocks();refreshFx();
 })();
 
-/* ---------- SIP calculator ---------- */
+
+/* Accessible site search: route the query to the relevant built-in section. */
+function searchSite(){
+ const input=document.getElementById('searchInput');
+ const q=(input && input.value || '').trim().toLowerCase();
+ if(!q){input && input.focus();return;}
+ const routes=[
+  {keys:['bitcoin','btc','ethereum','eth','crypto'],id:'crypto'},
+  {keys:['currency','forex','fx','usd','inr','exchange rate'],id:'fx'},
+  {keys:['stock','company','share','equity','nifty','sensex','index','indices','china','japan','taiwan','korea','hong kong','india','usa','us market'],id:'stocks'},
+  {keys:['sip','calculator','investment calculator'],id:'calculator'},
+  {keys:['mutual fund','fund','sip basics'],id:'funds'},
+  {keys:['bond','yield','fixed income'],id:'bonds'},
+  {keys:['playground','api','k-line','candlestick','quote'],id:'playground'},
+  {keys:['learn','education','investing','risk'],id:'learn'},
+  {keys:['privacy','cookie','data collection'],id:'privacy'},
+  {keys:['contact','email','advertising'],id:'contact'},
+  {keys:['faq','question','help'],id:'faq'}
+ ];
+ const route=routes.find(r=>r.keys.some(k=>q.includes(k)));
+ if(route){document.getElementById(route.id)?.scrollIntoView({behavior:'smooth',block:'start'});return;}
+ const filter=document.getElementById('stockFilter');
+ if(filter){filter.value=q;filter.dispatchEvent(new Event('input',{bubbles:true}));}
+ document.getElementById('stocks')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.getElementById('searchInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')searchSite()});
+\n/* ---------- SIP calculator ---------- */
 function money(n){return '₹'+Math.round(n).toLocaleString('en-IN')}
 function calc(){let m=Math.max(0,Number(document.getElementById('monthly').value)||0),y=Math.max(1,Math.min(50,Number(document.getElementById('years').value)||1)),r=Math.max(0,Math.min(50,Number(document.getElementById('return').value)||0))/1200,n=y*12;let fv=r===0?m*n:m*((Math.pow(1+r,n)-1)/r)*(1+r);let invested=m*n;document.getElementById('futureValue').textContent=money(fv);document.getElementById('investedText').textContent='Invested '+money(invested)+' · estimated growth '+money(fv-invested)}
 ['monthly','years','return'].forEach(id=>document.getElementById(id).addEventListener('input',calc));calc();
