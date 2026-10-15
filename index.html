@@ -117,14 +117,39 @@ gtag('set','ads_data_redaction',true);
 @media(max-width:760px){.tools-grid{grid-template-columns:1fr}.tool-fields{gap:10px}.tools-section .section-head{align-items:start;flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.tools-section *{scroll-behavior:auto}}
 
+/* ---- Candlestick charts page ---- */
+#page-home[hidden],#page-charts[hidden]{display:none!important}
+.cp-hero{background:linear-gradient(115deg,#071a2d,#123858 70%,#17435a);color:#fff;padding:38px 0 30px}
+.cp-hero h1{font-size:clamp(28px,4vw,44px);line-height:1.1;letter-spacing:-1.5px;margin:10px 0}
+.cp-hero p{color:#c9d7e3;max-width:680px;margin:0}
+.cp-back{display:inline-block;color:var(--gold);font-weight:800;font-size:13px;margin-bottom:6px}
+.cp-switch{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+.cp-chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.cp-chip{border:1px solid var(--line);background:#fff;color:#35495b;padding:7px 12px;border-radius:999px;cursor:pointer;font-size:12px;font-weight:750}
+.cp-chip:hover{border-color:#9db0c0}.cp-chip.active{background:var(--navy2);border-color:var(--navy2);color:#fff}
+.cp-box{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+.cp-widget{height:640px;width:100%}
+.cp-widget .tradingview-widget-container,.cp-widget .tradingview-widget-container__widget{height:100%;width:100%}
+.cp-widget .tradingview-widget-copyright{font-size:11px;text-align:right;padding:4px 10px;color:var(--muted)}
+.cp-widget .tradingview-widget-copyright a{color:#0c6f99}
+.cp-load{padding:40px 16px;text-align:center;color:var(--muted);font-size:13px}
+.cp-guide h3{margin:22px 0 6px;font-size:17px}.cp-guide p,.cp-guide li{font-size:13.5px;color:#34495c}.cp-guide ul{padding-left:20px}
+.cp-guide .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cp-teaser{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:linear-gradient(115deg,#0d2942,#13506a);color:#fff;border-radius:13px;padding:22px 24px;margin:6px 0 10px}
+.cp-teaser h2{margin:0 0 4px;font-size:21px;letter-spacing:-.4px}.cp-teaser p{margin:0;color:#c2d4e2;font-size:13px;max-width:640px}
+.cp-teaser .btn{white-space:nowrap}
+@media(max-width:850px){.cp-widget{height:540px}.cp-guide .cols{grid-template-columns:1fr}}
+@media(max-width:520px){.cp-widget{height:480px}}
+
 </style>
 </head>
 <body>
 <a href="#main" style="position:absolute;left:-9999px" onfocus="this.style.left='8px'" onblur="this.style.left='-9999px'">Skip to content</a>
 <div class="topline"><span><b>MARKETS</b> · Independent market intelligence for everyday investors</span><span id="dateLine">Live feeds · connecting…</span></div>
-<header class="header"><a class="brand" href="#"><span>Market</span>Scope<span>°</span></a><nav class="nav"><a href="#india">Indices</a><a href="#stocks">Stocks by Country</a><a href="#crypto">Crypto</a><a href="#fx">Currency</a><a href="#playground">Playground</a><a href="#funds">Mutual Funds</a><a href="#bonds">Bonds</a><a href="#learn">Learn</a><a class="nav-cta" href="#newsletter">Free Daily Brief ↗</a></nav></header>
+<header class="header"><a class="brand" href="#"><span>Market</span>Scope<span>°</span></a><nav class="nav"><a href="#india">Indices</a><a href="#stocks">Stocks by Country</a><a href="#crypto">Crypto</a><a href="#fx">Currency</a><a href="#/charts">Candlestick Charts</a><a href="#playground">Playground</a><a href="#funds">Mutual Funds</a><a href="#bonds">Bonds</a><a href="#learn">Learn</a><a class="nav-cta" href="#newsletter">Free Daily Brief ↗</a></nav></header>
 <noscript><div style="padding:14px 5%;background:#fff6d6;font-size:13px">FinanceScanner shows live Nifty 50, Sensex, Asian and US market data, Bitcoin and Ethereum prices and currency rates. Please enable JavaScript to see live quotes.</div></noscript>
 <div class="ticker" aria-label="Live market ticker"><div class="ticker-marquee" id="tickerTrack"></div></div>
+<div id="page-home">
 <section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Smarter money starts here</div><h1>Live markets, crypto &amp;<br>currency rates, made clear.</h1><p>Your daily destination for Indian stocks, US markets, mutual funds and bonds. Understand what moved, why it matters, and what to watch next.</p><div class="search"><input id="searchInput" placeholder="Search stocks, funds, topics…" aria-label="Search markets"><button onclick="searchSite()">Search ↗</button></div><div class="hero-note">Research first. Understand the risks. Make your own decisions.</div></div><div class="hero-card"><h3>Market pulse</h3><p>Live snapshot · last close when a market is shut</p>
 <div class="index-row"><div><small>NIFTY 50</small><strong data-price="^NSEI" data-dp="2">…</strong></div><span class="change" data-pct="^NSEI"></span></div>
 <div class="index-row"><div><small>BSE SENSEX</small><strong data-price="^BSESN" data-dp="2">…</strong></div><span class="change" data-pct="^BSESN"></span></div>
@@ -145,6 +170,7 @@ gtag('set','ads_data_redaction',true);
 
 <section class="section" id="india"><div class="section-head"><div><h2>Market dashboard</h2><p>Benchmark indices across India and Asia-Pacific, plus the S&amp;P 500</p></div><a class="link" href="#stocks">Stocks by country ↓</a></div><div class="grid cards4" id="dashGrid"></div><p class="disclaimer">Index data via Yahoo Finance through the aggregator selected above. Intraday sparklines show the latest session. Prices are informational and may be delayed.</p></section>
 
+<div class="cp-teaser"><div><h2>Live candlestick charts — stocks &amp; currency</h2><p>Open the full-screen chart page: Nifty, Sensex, Reliance, TCS, Apple, NVIDIA, USD/INR, EUR/USD and more, with indicators, drawing tools and every timeframe from 1 minute to monthly.</p></div><a class="btn" href="#/charts">Open charts ↗</a></div>
 <section class="section" id="stocks"><div class="section-head"><div><h2>Leading profitable companies by country</h2><p>Large, established, consistently profitable listed businesses in China, Hong Kong, Japan, India, Taiwan and South Korea — plus a US tab. China, HK and US prices come from stock-sdk; the rest from Yahoo.</p></div><a class="link" href="https://finance.yahoo.com/markets/stocks/most-active/" target="_blank" rel="noopener">More on Yahoo Finance ↗</a></div><div class="card"><div class="stock-tools"><div class="tabs" id="stockTabs"></div><input id="stockFilter" type="search" placeholder="Filter company or ticker…" aria-label="Filter stocks"></div><div class="table-wrap"><table><thead><tr><th>Company / ticker</th><th>Exchange</th><th class="right">Last price</th><th class="right">Change</th><th class="right">Research angle</th><th class="right">Charts</th></tr></thead><tbody id="stockRows"></tbody></table></div><div class="disclaimer">These are illustrative large-cap names that have historically reported profits, not recommendations. Past profitability does not guarantee future results. Prices are in each stock’s local currency.</div></div></section>
 
 <section class="section" id="crypto"><div class="section-head"><div><h2>Bitcoin &amp; Ethereum</h2><p>Live prices, compared across exchanges and aggregators</p></div><span class="tag">24/7 · ~15 s refresh</span></div>
@@ -324,6 +350,44 @@ gtag('set','ads_data_redaction',true);
 </section>
 
 </main>
+</div><!-- /#page-home -->
+
+<div id="page-charts" hidden>
+<section class="cp-hero"><div class="wrap">
+<a class="cp-back" href="#india">← Back to live markets</a>
+<div class="eyebrow">Interactive charts</div>
+<h1>Live candlestick charts for stocks &amp; currency</h1>
+<p>Pick an Indian or US stock, an index or a currency pair. Switch timeframes, add indicators and draw trendlines right on the chart. Candlesticks show open, high, low and close for every period.</p>
+</div></section>
+<main class="wrap" id="charts-main">
+<section class="section" style="padding-bottom:0">
+<div class="cp-switch" id="cpSwitch" role="tablist" aria-label="Chart type"><button class="tab active" data-cat="stocks" role="tab" type="button">Stocks &amp; indices</button><button class="tab" data-cat="fx" role="tab" type="button">Currency pairs</button></div>
+<div class="cp-chips" id="cpChips"></div>
+<div class="cp-box"><div class="cp-widget" id="cpWidget"><div class="cp-load">Loading chart…</div></div></div>
+<p class="disclaimer">Charts and market data are provided by TradingView and may be delayed depending on the exchange. Use the search icon inside the chart to open any other symbol (for example NSE:SBIN or FX:AUDJPY). For education and information only — not investment advice.</p>
+</section>
+<div class="ad-slot"><ins class="adsbygoogle" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="4444444444" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+<section class="section cp-guide legal" style="padding-top:6px"><div class="card" style="max-width:none">
+<h2 style="margin:0 0 6px;font-size:22px;letter-spacing:-.5px">How to read a candlestick chart</h2>
+<p>Each candle summarises one time period — a minute, an hour, a day or a month, depending on the timeframe you choose. The thick <b>body</b> spans the open and close price, and the thin <b>wicks</b> reach the highest and lowest prices traded in that period. On this chart a green (or hollow) body means the price closed above its open; a red (or filled) body means it closed lower.</p>
+<div class="cols"><div>
+<h3>Common single-candle signals</h3>
+<ul><li><b>Doji</b> — open and close almost equal; shows indecision between buyers and sellers.</li><li><b>Hammer</b> — small body with a long lower wick after a fall; sellers pushed price down but buyers recovered it.</li><li><b>Shooting star</b> — small body with a long upper wick after a rise; buyers failed to hold the highs.</li><li><b>Marubozu</b> — a long body with almost no wicks; one side controlled the whole period.</li></ul>
+</div><div>
+<h3>Common multi-candle patterns</h3>
+<ul><li><b>Bullish / bearish engulfing</b> — a candle whose body fully covers the previous one, hinting at a possible change in direction.</li><li><b>Morning / evening star</b> — a three-candle reversal pattern around a small middle candle.</li><li><b>Three white soldiers / three black crows</b> — three strong candles in the same direction in a row.</li><li><b>Inside bar</b> — a candle contained within the previous one; often precedes a breakout.</li></ul>
+</div></div>
+<h3>Using candlesticks with stocks</h3>
+<p>For shares and indices such as the Nifty 50 or Sensex, daily candles help you see the broader trend, while 5- to 60-minute candles show intraday behaviour. Volume bars under the chart show how much trading supported a move — a breakout on high volume is generally more meaningful than one on thin volume. Results depend on the market session: Indian equities trade roughly 9:15–15:30 IST, US stocks 9:30–16:00 New York time.</p>
+<h3>Using candlesticks with currency pairs</h3>
+<p>Forex trades around the clock on weekdays, so candles are continuous rather than interrupted by overnight gaps. Pairs such as USD/INR are quoted as how many units of the second currency one unit of the first buys, so a rising chart means the first currency is strengthening. Prices move in small increments called pips, and liquidity peaks when the London and New York sessions overlap.</p>
+<h3>Good habits</h3>
+<ul><li>Check more than one timeframe before drawing conclusions.</li><li>Treat patterns as probabilities, not promises — confirm with trend, volume or support and resistance levels.</li><li>Decide your risk and stop level before you enter any trade; our <a href="#tool-risk">risk / reward</a> and <a href="#tool-size">position-sizing</a> calculators can help.</li></ul>
+<p class="disclaimer">Past price patterns do not guarantee future results. Trading in stocks and currencies involves risk, including loss of capital. FinanceScanner is not a broker, investment adviser or research analyst.</p>
+</div></section>
+<div class="ad-slot"><ins class="adsbygoogle" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="5555555555" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
+</main>
+</div><!-- /#page-charts -->
 <footer class="footer"><div class="wrap"><div class="footer-grid"><div><a class="brand" href="#"><span>Market</span>Scope<span>°</span></a><p>Clear, accessible market information for curious investors in India and around the world.</p><p>Independent editorial concept. Not a broker or investment adviser.</p></div><div><h4>Markets</h4><a href="#india">Market indices</a><a href="#crypto">Bitcoin &amp; Ethereum</a><a href="#fx">Currency rates</a><a href="#stocks">Stocks by country</a><a href="#bonds">Bonds & yields</a><a href="#funds">Mutual funds</a></div><div><h4>Learn</h4><a href="#playground">Data playground</a><a href="#calculator">SIP calculator</a><a href="https://stock-sdk.linkdiary.cn" target="_blank" rel="noopener">stock-sdk docs</a><a href="#learn">Market explainers</a><a href="https://investor.sebi.gov.in/" target="_blank" rel="noopener">SEBI Investor</a><a href="https://www.amfiindia.com/" target="_blank" rel="noopener">AMFI</a></div><div><h4>Site information</h4><a href="#about">About us</a><a href="#faq">FAQ</a><a href="#privacy">Privacy policy</a><a href="#terms">Terms &amp; disclaimer</a><a href="#contact">Contact</a></div></div><div class="copyright">© 2026 FinanceScanner. All rights reserved. · Market data from stock-sdk, Yahoo Finance, Binance, Coinbase, Kraken, CoinGecko, ExchangeRate-API and Frankfurter; may be delayed.</div><div class="disclaimer" id="disclaimer"><b>Financial disclaimer:</b> Content is for general information and education only, not investment advice, a recommendation, or an offer to buy or sell securities. Market prices can change rapidly. Verify quotes, filings, fund documents, yields and regulations with official sources. Investing involves risk, including loss of principal. Do not publish personalized securities recommendations or paid research without checking applicable Indian and US regulatory requirements.</div></div></footer>
 <script>
 (function(){
@@ -394,6 +458,10 @@ const TICKER=[['^NSEI','NIFTY 50',2],['^BSESN','SENSEX',2],['^N225','NIKKEI',2],
 const Q={};           // quotes by key
 let lastPx='corsproxy',tickN=0;
 const busy={};
+
+/* ---------- TradingView symbol mapping (for the Charts page) ---------- */
+const TVX={NSE:'NSE',SHA:'SSE',SHE:'SZSE',HKG:'HKEX',TYO:'TSE',TPE:'TWSE',KRX:'KRX',NASDAQ:'NASDAQ',NYSE:'NYSE'};
+const tvSym=s=>{const base=s[1].split('.')[0],t=s[3]==='HKG'?String(parseInt(base,10)):base;return (TVX[s[3]]||s[3])+':'+t};
 
 /* ---------- Helpers ---------- */
 const fmt=(n,dp)=>(n==null||isNaN(n))?'—':Number(n).toLocaleString('en-US',{minimumFractionDigits:dp,maximumFractionDigits:dp});
@@ -603,7 +671,7 @@ function renderStocks(){
   const price=q?fmt(q.price,dpAuto(q.price))+'<span class="cur">'+cur+'</span>':(Q._stocksFailed?'—':'…');
   const pct=q&&q.pct!=null?'<span class="'+(q.pct>=0?'up':'down')+'">'+(q.pct>=0?'▲ ':'▼ ')+Math.abs(q.pct).toFixed(2)+'%</span>':'—';
   const g=s[3]==='HKG'?String(parseInt(s[1],10)):s[1].split('.')[0];
-  return '<tr><td><span class="asset-name">'+s[0]+'</span><span class="asset-sub">'+s[1]+'</span></td><td>'+s[2]+(q?'<span class="asset-sub">'+esc(q.src)+'</span>':'')+'</td><td class="right num" title="'+(q?'Quote time '+new Date(q.time).toLocaleString():'')+'">'+price+'</td><td class="right num">'+pct+'</td><td class="right">'+s[4]+'</td><td class="right"><a class="xlink" href="https://finance.yahoo.com/quote/'+encodeURIComponent(s[1])+'" target="_blank" rel="noopener">Yahoo ↗</a><a class="xlink" href="https://www.google.com/finance/quote/'+g+':'+s[3]+'" target="_blank" rel="noopener">Google ↗</a></td></tr>';
+  return '<tr><td><span class="asset-name">'+s[0]+'</span><span class="asset-sub">'+s[1]+'</span></td><td>'+s[2]+(q?'<span class="asset-sub">'+esc(q.src)+'</span>':'')+'</td><td class="right num" title="'+(q?'Quote time '+new Date(q.time).toLocaleString():'')+'">'+price+'</td><td class="right num">'+pct+'</td><td class="right">'+s[4]+'</td><td class="right"><a class="xlink" href="#/charts?s='+encodeURIComponent(tvSym(s))+'">Candles</a><a class="xlink" href="https://finance.yahoo.com/quote/'+encodeURIComponent(s[1])+'" target="_blank" rel="noopener">Yahoo ↗</a><a class="xlink" href="https://www.google.com/finance/quote/'+g+':'+s[3]+'" target="_blank" rel="noopener">Google ↗</a></td></tr>';
  }).join('');
  $('#stockRows').innerHTML=rows||'<tr><td colspan="6" style="color:var(--muted)">No matches in '+m.name+'.</td></tr>';
 }
@@ -891,4 +959,61 @@ Object.values(calculators).forEach(fn=>{try{fn()}catch(e){}});
 })();
 </script>
 
+
+<script>
+/* ===== Second page: candlestick charts (TradingView free Advanced Chart widget) ===== */
+(function(){
+var home=document.getElementById('page-home'),pg=document.getElementById('page-charts');
+if(!home||!pg)return;
+var PRESETS={
+ stocks:[['NIFTY 50','NSE:NIFTY'],['SENSEX','BSE:SENSEX'],['Reliance','NSE:RELIANCE'],['TCS','NSE:TCS'],['HDFC Bank','NSE:HDFCBANK'],['Infosys','NSE:INFY'],['S&P 500','SP:SPX'],['Apple','NASDAQ:AAPL'],['Microsoft','NASDAQ:MSFT'],['NVIDIA','NASDAQ:NVDA'],['Tesla','NASDAQ:TSLA']],
+ fx:[['USD/INR','FX_IDC:USDINR'],['EUR/USD','FX:EURUSD'],['GBP/USD','FX:GBPUSD'],['USD/JPY','FX:USDJPY'],['EUR/INR','FX_IDC:EURINR'],['GBP/INR','FX_IDC:GBPINR'],['AUD/USD','FX:AUDUSD'],['USD/CAD','FX:USDCAD'],['USD/CNY','FX_IDC:USDCNY'],['JPY/INR','FX_IDC:JPYINR']]
+};
+var DEFAULT={stocks:'NSE:NIFTY',fx:'FX_IDC:USDINR'};
+var cat='stocks',sym=DEFAULT.stocks,adsDone=false,lastPage='home',BASE_TITLE=document.title;
+var box=document.getElementById('cpWidget'),chips=document.getElementById('cpChips');
+var tz='Etc/UTC';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||tz}catch(e){}
+function catOf(s){return /^(FX|FX_IDC|OANDA|FOREXCOM|FXCM):/i.test(s)?'fx':'stocks'}
+function renderChips(){
+ chips.innerHTML=PRESETS[cat].map(function(p){return '<button type="button" class="cp-chip'+(p[1]===sym?' active':'')+'" data-sym="'+p[1]+'">'+p[0]+'</button>'}).join('');
+ Array.prototype.forEach.call(document.querySelectorAll('#cpSwitch .tab'),function(b){b.classList.toggle('active',b.dataset.cat===cat);b.setAttribute('aria-selected',b.dataset.cat===cat)});
+}
+function drawChart(){
+ box.innerHTML='<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span>Track all markets on TradingView</span></a></div></div>';
+ var s=document.createElement('script');
+ s.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';s.async=true;
+ s.text=JSON.stringify({autosize:true,symbol:sym,interval:'D',timezone:tz,theme:'light',style:'1',locale:'en',allow_symbol_change:true,hide_side_toolbar:false,withdateranges:true,save_image:true,calendar:false,support_host:'https://www.tradingview.com'});
+ box.firstChild.appendChild(s);
+}
+function select(newSym,push){
+ sym=newSym;cat=catOf(sym);renderChips();drawChart();
+ if(push){try{history.replaceState(null,'','#/charts?s='+encodeURIComponent(sym))}catch(e){}}
+}
+chips.addEventListener('click',function(e){var b=e.target.closest('.cp-chip');if(b)select(b.dataset.sym,true)});
+document.getElementById('cpSwitch').addEventListener('click',function(e){var b=e.target.closest('.tab');if(!b||b.dataset.cat===cat)return;cat=b.dataset.cat;select(DEFAULT[cat],true)});
+function initAds(){
+ if(adsDone)return;adsDone=true;
+ Array.prototype.forEach.call(pg.querySelectorAll('ins.adsbygoogle'),function(){try{(window.adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}});
+}
+function route(){
+ var h=location.hash||'';
+ var m=h.match(/^#\/?charts(?:\?(.*))?$/);
+ if(m){
+  var q=new URLSearchParams(m[1]||''),want=q.get('s')||sym;
+  home.hidden=true;pg.hidden=false;
+  document.title='Live Candlestick Charts — Stocks & Currency | FinanceScanner';
+  if(lastPage!=='charts'||want!==sym||!box.querySelector('.tradingview-widget-container')){sym=want;cat=catOf(sym);renderChips();drawChart()}
+  if(lastPage!=='charts')window.scrollTo(0,0);
+  initAds();lastPage='charts';
+ }else{
+  var wasCharts=lastPage==='charts';
+  pg.hidden=true;home.hidden=false;document.title=BASE_TITLE;lastPage='home';
+  var id=decodeURIComponent(h.replace(/^#/,'')),el=id?document.getElementById(id):null;
+  if(el)setTimeout(function(){el.scrollIntoView()},0);else if(wasCharts)window.scrollTo(0,0);
+ }
+}
+window.addEventListener('hashchange',route);
+renderChips();route();
+})();
+</script>
 </body></html>
